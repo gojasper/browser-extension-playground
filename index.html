@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <title>Textarea Arena</title>
+    <script>
+      function handleLoaded() {
+        var iframe = document.createElement("iframe");
+        var html = "<body contenteditable>Foo</body>";
+        document.body.appendChild(iframe);
+        iframe.contentWindow.document.open();
+        iframe.contentWindow.document.write(html);
+        iframe.contentWindow.document.close();
+      }
+    </script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
+  </head>
+  <body style="background: #d3d3d3" onload="handleLoaded()">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <h1>Welcome to the textarea arena!</h1>
+    <textarea
+      id="a-textarea"
+      autofocus
+      style="width: 700px; height: 700px; margin-left: 100px"
+    ></textarea>
+    <br />
+    <button onclick="logAnchor()">Click this</button>
+    <br />
+    <input style="width: 100px" />
+    <br />
+    <br />
+    <div style="font-size: 16px" contenteditable="plaintext-only">Hello</div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div id="ckeditor">
+      <p>This is some ckeditor-ness</p>
+    </div>
+    <script>
+      ClassicEditor.create(document.querySelector("#ckeditor")).catch((error) => {
+        console.error(error);
+      });
+    </script>
+    <div id="quill-editor">
+      <p>This is quill</p>
+    </div>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+      var quill = new Quill("#quill-editor", {
+        theme: "snow",
+      });
+    </script>
+    <input
+      type="submit"
+      value="SUBMIT BUTTON"
+      onclick="document.getElementsByTagName('textarea')[0].style = 'display: none'"
+    />
+
+    <br />
+    <textarea style="width: 1000px; height: 1000px"></textarea>
+  </body>
+</html>
